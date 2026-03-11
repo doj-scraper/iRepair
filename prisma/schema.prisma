@@ -1,0 +1,137 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+generator client {
+  provider = "prisma-client-js"
+}
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+// ============================================
+// ENUMS
+// ============================================
+enum Brand {
+  Apple
+  Samsung
+  Motorola
+  Other
+}
+enum PartCategory {
+  Screens
+  Batteries
+  Charging_Ports
+  Cameras
+  Back_Glass
+  Other
+}
+enum QualityGrade {
+  OEM
+  Aftermarket
+  Refurbished
+}
+enum OrderStatus {
+  Processing
+  Shipped
+  Delivered
+  Cancelled
+}
+enum QuoteStatus {
+  Pending
+  Quoted
+  Closed
+}
+// ============================================
+// MODELS
+// ============================================
+model Product {
+  id             String   @id @default(cuid())
+  sku            String   @unique
+  name           String
+  description    String?
+  brand          Brand
+  deviceModel    String
+  category       PartCategory
+  qualityGrade    QualityGrade
+  price          Float
+  wholesalePrice  Float
+  stockQuantity   Int
+  imageUrl       String?
+  isActive        Boolean @default(true)
+  moq             Int      @default(5)
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+  @@index([sku, brand, category, deviceModel])
+}
+model Order {
+  id              String   @id @default(cuid())
+  orderNumber    String   @unique @default(cuid())
+  userId          String?
+  guestEmail      String?
+  guestName       String?
+  guestPhone      String?
+  status          OrderStatus @default(Processing)
+  subtotal        Float
+  shippingCost    Float
+  tax             Float @default(0)
+  total           Float
+  shippingAddress String
+  billingAddress  String?
+  notes           String?
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+  @@index([userId, status, createdAt])
+}
+model OrderItem {
+  id            String   @id @default(cuid())
+  orderId       String
+  productId      String?
+  productName    String
+  productSku     String
+  quantity       Int
+  unitPrice      Float
+  totalPrice     Float
+  createdAt      DateTime @default(now())
+  @@index([orderId])
+}
+model Cart {
+  id            String   @id @default(cuid())
+  userId         String?
+  sessionId      String?
+  items          String   @default("[]") // JSON string
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+  @@index([userId, sessionId])
+}
+model QuoteRequest {
+  id            String   @id @default(cuid())
+  userId         String?
+  guestEmail     String?
+  guestName      String?
+  guestPhone     String?
+  companyName    String?
+  message        String
+  status         QuoteStatus @default(Pending)
+  quotedTotal    Float?
+  adminNotes     String?
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+  @@index([userId, status, createdAt])
+}
+model QuoteRequestItem {
+  id              String   @id @default(cuid())
+  quoteRequestId String
+  productName     String
+  productSku      String?
+  quantity        Int
+  notes           String?
+  createdAt       DateTime @default(now())
+  @@index([quoteRequestId])
+}
+model ContentPage {
+  id            String   @id @default(cuid())
+  slug           String   @unique
+  title          String
+  body           String
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+}

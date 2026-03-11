@@ -1,0 +1,436 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+/*
+ * CellTech Distributor B2B Portal - Design System
+ * Primary Color: Emerald Green (#059669)
+ * NO BLUE ANYWHERE - WCAG 2.1 AA Compliant
+ * Light mode default with dark mode support
+ */
+
+@theme inline {
+  /* Core color mappings */
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+
+  /* Semantic color tokens */
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-primary-dark: var(--primary-dark);
+  --color-primary-light: var(--primary-light);
+
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+
+  --color-success: var(--success);
+  --color-success-foreground: var(--success-foreground);
+
+  --color-warning: var(--warning);
+  --color-warning-foreground: var(--warning-foreground);
+
+  --color-error: var(--error);
+  --color-error-foreground: var(--error-foreground);
+
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+
+  /* Sidebar tokens */
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+
+  /* Chart colors - Emerald-based palette */
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+
+  /* Border radius */
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+}
+
+/* ============================================
+   LIGHT MODE (DEFAULT)
+   ============================================ */
+:root {
+  /* Base radius */
+  --radius: 0.625rem;
+
+  /* Primary: Emerald Green #059669 */
+  --primary: oklch(0.596 0.145 163.225);           /* emerald-600 */
+  --primary-foreground: oklch(0.985 0 0);          /* white text */
+  --primary-dark: oklch(0.372 0.084 163.225);      /* emerald-900 */
+  --primary-light: oklch(0.949 0.022 163.225);     /* emerald-100 */
+
+  /* Background & Foreground - Light mode */
+  --background: oklch(0.985 0 0);                  /* neutral-50 #F9FAFB */
+  --foreground: oklch(0.212 0.009 285.75);         /* neutral-900 #111827 */
+
+  /* Card */
+  --card: oklch(1 0 0);                            /* white */
+  --card-foreground: oklch(0.212 0.009 285.75);    /* neutral-900 */
+
+  /* Popover */
+  --popover: oklch(1 0 0);                         /* white */
+  --popover-foreground: oklch(0.212 0.009 285.75); /* neutral-900 */
+
+  /* Secondary */
+  --secondary: oklch(0.965 0.003 285.75);          /* neutral-100 */
+  --secondary-foreground: oklch(0.212 0.009 285.75); /* neutral-900 */
+
+  /* Muted */
+  --muted: oklch(0.965 0.003 285.75);              /* neutral-100 */
+  --muted-foreground: oklch(0.556 0.012 285.75);   /* neutral-500 */
+
+  /* Accent */
+  --accent: oklch(0.949 0.022 163.225);            /* emerald-100 */
+  --accent-foreground: oklch(0.372 0.084 163.225); /* emerald-900 */
+
+  /* Destructive/Error */
+  --destructive: oklch(0.577 0.245 27.325);        /* red-600 */
+  --destructive-foreground: oklch(0.985 0 0);      /* white */
+
+  /* Success - #16A34A */
+  --success: oklch(0.527 0.154 142.5);             /* green-600 */
+  --success-foreground: oklch(0.985 0 0);          /* white */
+
+  /* Warning - #D97706 */
+  --warning: oklch(0.646 0.188 70.08);             /* amber-600 */
+  --warning-foreground: oklch(0.985 0 0);          /* white */
+
+  /* Error - #DC2626 */
+  --error: oklch(0.577 0.245 27.325);              /* red-600 */
+  --error-foreground: oklch(0.985 0 0);            /* white */
+
+  /* Border & Input */
+  --border: oklch(0.922 0.004 285.75);             /* neutral-200 */
+  --input: oklch(0.922 0.004 285.75);              /* neutral-200 */
+  --ring: oklch(0.596 0.145 163.225);              /* emerald-600 */
+
+  /* Chart colors - Emerald-based palette */
+  --chart-1: oklch(0.596 0.145 163.225);           /* emerald-600 */
+  --chart-2: oklch(0.453 0.118 163.225);           /* emerald-700 */
+  --chart-3: oklch(0.372 0.084 163.225);           /* emerald-900 */
+  --chart-4: oklch(0.696 0.17 142.5);              /* green-500 */
+  --chart-5: oklch(0.527 0.154 142.5);             /* green-600 */
+
+  /* Sidebar - Light */
+  --sidebar: oklch(0.985 0 0);                     /* white */
+  --sidebar-foreground: oklch(0.212 0.009 285.75); /* neutral-900 */
+  --sidebar-primary: oklch(0.596 0.145 163.225);   /* emerald-600 */
+  --sidebar-primary-foreground: oklch(0.985 0 0);  /* white */
+  --sidebar-accent: oklch(0.949 0.022 163.225);    /* emerald-100 */
+  --sidebar-accent-foreground: oklch(0.372 0.084 163.225); /* emerald-900 */
+  --sidebar-border: oklch(0.922 0.004 285.75);     /* neutral-200 */
+  --sidebar-ring: oklch(0.596 0.145 163.225);      /* emerald-600 */
+}
+
+/* ============================================
+   DARK MODE
+   ============================================ */
+.dark {
+  /* Primary: Emerald Green - slightly brighter for dark mode */
+  --primary: oklch(0.696 0.145 163.225);           /* emerald-500 */
+  --primary-foreground: oklch(0.145 0 0);          /* dark text */
+  --primary-dark: oklch(0.272 0.064 163.225);      /* emerald-950 */
+  --primary-light: oklch(0.272 0.064 163.225);     /* emerald-950 for surfaces */
+
+  /* Background & Foreground - Dark mode */
+  --background: oklch(0.145 0 0);                  /* neutral-900 */
+  --foreground: oklch(0.985 0 0);                  /* neutral-50 */
+
+  /* Card */
+  --card: oklch(0.185 0.006 285.75);               /* neutral-800 */
+  --card-foreground: oklch(0.985 0 0);             /* neutral-50 */
+
+  /* Popover */
+  --popover: oklch(0.185 0.006 285.75);            /* neutral-800 */
+  --popover-foreground: oklch(0.985 0 0);          /* neutral-50 */
+
+  /* Secondary */
+  --secondary: oklch(0.269 0.008 285.75);          /* neutral-700 */
+  --secondary-foreground: oklch(0.985 0 0);        /* neutral-50 */
+
+  /* Muted */
+  --muted: oklch(0.269 0.008 285.75);              /* neutral-700 */
+  --muted-foreground: oklch(0.708 0.01 285.75);    /* neutral-400 */
+
+  /* Accent */
+  --accent: oklch(0.272 0.064 163.225);            /* emerald-950 */
+  --accent-foreground: oklch(0.949 0.022 163.225); /* emerald-100 */
+
+  /* Destructive/Error */
+  --destructive: oklch(0.639 0.209 27.325);        /* red-500 */
+  --destructive-foreground: oklch(0.985 0 0);      /* white */
+
+  /* Success */
+  --success: oklch(0.696 0.17 142.5);              /* green-500 */
+  --success-foreground: oklch(0.145 0 0);          /* dark */
+
+  /* Warning */
+  --warning: oklch(0.769 0.155 70.08);             /* amber-500 */
+  --warning-foreground: oklch(0.145 0 0);          /* dark */
+
+  /* Error */
+  --error: oklch(0.639 0.209 27.325);              /* red-500 */
+  --error-foreground: oklch(0.985 0 0);            /* white */
+
+  /* Border & Input */
+  --border: oklch(1 0 0 / 10%);
+  --input: oklch(1 0 0 / 15%);
+  --ring: oklch(0.696 0.145 163.225);              /* emerald-500 */
+
+  /* Chart colors - Dark mode adjusted */
+  --chart-1: oklch(0.696 0.145 163.225);           /* emerald-500 */
+  --chart-2: oklch(0.596 0.145 163.225);           /* emerald-600 */
+  --chart-3: oklch(0.949 0.022 163.225);           /* emerald-100 */
+  --chart-4: oklch(0.696 0.17 142.5);              /* green-500 */
+  --chart-5: oklch(0.769 0.155 70.08);             /* amber-500 */
+
+  /* Sidebar - Dark */
+  --sidebar: oklch(0.185 0.006 285.75);            /* neutral-800 */
+  --sidebar-foreground: oklch(0.985 0 0);          /* neutral-50 */
+  --sidebar-primary: oklch(0.696 0.145 163.225);   /* emerald-500 */
+  --sidebar-primary-foreground: oklch(0.145 0 0);  /* dark */
+  --sidebar-accent: oklch(0.272 0.064 163.225);    /* emerald-950 */
+  --sidebar-accent-foreground: oklch(0.949 0.022 163.225); /* emerald-100 */
+  --sidebar-border: oklch(1 0 0 / 10%);
+  --sidebar-ring: oklch(0.696 0.145 163.225);      /* emerald-500 */
+}
+
+/* ============================================
+   BASE STYLES
+   ============================================ */
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  html {
+    color-scheme: light;
+  }
+
+  .dark html,
+  html.dark {
+    color-scheme: dark;
+  }
+
+  body {
+    @apply bg-background text-foreground antialiased;
+    font-feature-settings: "rlig" 1, "calt" 1;
+  }
+}
+
+/* ============================================
+   ACCESSIBILITY STYLES
+   ============================================ */
+
+/* Skip-to-content link for keyboard users */
+.skip-to-content {
+  position: absolute;
+  top: -100%;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 9999;
+  padding: 0.75rem 1.5rem;
+  background-color: var(--primary);
+  color: var(--primary-foreground);
+  font-weight: 600;
+  text-decoration: none;
+  border-radius: var(--radius);
+  transition: top 0.2s ease-in-out;
+}
+
+.skip-to-content:focus {
+  top: 1rem;
+  outline: 2px solid var(--ring);
+  outline-offset: 2px;
+}
+
+/* Focus indicator - 2px solid outline for WCAG 2.1 AA compliance */
+*:focus-visible {
+  outline: 2px solid var(--ring);
+  outline-offset: 2px;
+}
+
+/* Remove default focus outline when not using keyboard navigation */
+*:focus:not(:focus-visible) {
+  outline: none;
+}
+
+/* Enhanced focus for interactive elements */
+button:focus-visible,
+a:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible,
+[role="button"]:focus-visible,
+[role="link"]:focus-visible,
+[role="menuitem"]:focus-visible,
+[role="tab"]:focus-visible {
+  outline: 2px solid var(--ring);
+  outline-offset: 2px;
+  border-radius: var(--radius-sm);
+}
+
+/* Focus ring for elements with existing border-radius */
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible {
+  outline-offset: 0;
+}
+
+/* Checkbox and radio focus styles */
+[role="checkbox"]:focus-visible,
+[role="radio"]:focus-visible,
+input[type="checkbox"]:focus-visible,
+input[type="radio"]:focus-visible {
+  outline: 2px solid var(--ring);
+  outline-offset: 2px;
+}
+
+/* Link focus styles */
+a:focus-visible {
+  text-decoration-thickness: 3px;
+}
+
+/* Button focus styles */
+button:focus-visible,
+[role="button"]:focus-visible {
+  box-shadow: 0 0 0 2px var(--background), 0 0 0 4px var(--ring);
+}
+
+/* ============================================
+   COLOR UTILITY CLASSES
+   ============================================ */
+.bg-primary { background-color: var(--primary); }
+.text-primary { color: var(--primary); }
+.border-primary { border-color: var(--primary); }
+
+.bg-primary-dark { background-color: var(--primary-dark); }
+.text-primary-dark { color: var(--primary-dark); }
+
+.bg-primary-light { background-color: var(--primary-light); }
+.text-primary-light { color: var(--primary-light); }
+
+.bg-success { background-color: var(--success); }
+.text-success { color: var(--success); }
+.border-success { border-color: var(--success); }
+
+.bg-warning { background-color: var(--warning); }
+.text-warning { color: var(--warning); }
+.border-warning { border-color: var(--warning); }
+
+.bg-error { background-color: var(--error); }
+.text-error { color: var(--error); }
+.border-error { border-color: var(--error); }
+
+/* ============================================
+   ANIMATIONS
+   ============================================ */
+@keyframes fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slide-in-from-top {
+  from { transform: translateY(-100%); }
+  to { transform: translateY(0); }
+}
+
+.animate-fade-in {
+  animation: fade-in 0.2s ease-out;
+}
+
+.animate-slide-in-top {
+  animation: slide-in-from-top 0.2s ease-out;
+}
+
+/* ============================================
+   SCROLLBAR STYLING (Optional Enhancement)
+   ============================================ */
+/* WebKit scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--muted);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--muted-foreground);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--primary);
+}
+
+/* Firefox scrollbar */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--muted-foreground) var(--muted);
+}
+
+/* ============================================
+   SELECTION STYLING
+   ============================================ */
+::selection {
+  background-color: var(--primary-light);
+  color: var(--primary-dark);
+}
+
+.dark ::selection {
+  background-color: var(--primary);
+  color: var(--primary-foreground);
+}
+
+/* ============================================
+   PRINT STYLES
+   ============================================ */
+@media print {
+  .dark {
+    color-scheme: light;
+  }
+
+  body {
+    background: white;
+    color: black;
+  }
+
+  .no-print {
+    display: none !important;
+  }
+}
