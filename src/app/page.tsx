@@ -1,6 +1,7 @@
 'use client';
 
 import * as React from 'react';
+import { Suspense } from 'react';
 import Link from 'next/link';
 import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
@@ -637,7 +638,7 @@ function CTABanner() {
 // Main Homepage Component
 // ====================
 
-export default function HomePage() {
+function HomePageContent() {
   return (
     <main className="min-h-screen">
       {/* Hero Section */}
@@ -661,5 +662,17 @@ export default function HomePage() {
       {/* CTA Banner */}
       <CTABanner />
     </main>
+  );
+}
+
+export default function HomePage() {
+  return (
+    <Suspense fallback={
+      <main className="min-h-screen flex items-center justify-center">
+        <div className="animate-pulse text-muted-foreground">Loading...</div>
+      </main>
+    }>
+      <HomePageContent />
+    </Suspense>
   );
 }
